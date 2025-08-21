@@ -1,0 +1,73 @@
+<!-- Registration Form -->
+<div class="register-container" *ngIf="!verificationMode">
+  <form (ngSubmit)="onSubmit()" class="register-form">
+    <h2>Register</h2>
+
+    <!-- Username -->
+    <div class="form-group">
+      <i class="fas fa-user input-icon"></i>
+      <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required class="form-input">
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required class="form-input">
+    </div>
+
+    <!-- Employee ID -->
+    <div class="form-group">
+      <i class="fas fa-id-badge input-icon"></i>
+      <input type="text" [(ngModel)]="employee_id" name="employee_id" placeholder="Employee ID (must start with TMS)" required class="form-input">
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required class="form-input">
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" [(ngModel)]="confirm_password" name="confirm_password" placeholder="Confirm Password" required class="form-input">
+    </div>
+
+    <button type="submit" class="submit-btn" [disabled]="loadingRegister">
+      <ng-container *ngIf="!loadingRegister">Register</ng-container>
+      <ng-container *ngIf="loadingRegister"><span class="spinner"></span> Registering...</ng-container>
+    </button>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </form>
+</div>
+
+<!-- Verification Form -->
+<div *ngIf="verificationMode" class="verify-container">
+  <div class="verify-form">
+    <h2>Verify Email</h2>
+    <p>Enter the verification code sent to your email.</p>
+
+    <div class="form-group">
+      <i class="fas fa-key input-icon"></i>
+      <input type="text" [(ngModel)]="verificationCode" name="code" placeholder="Verification Code" required class="form-input">
+    </div>
+
+    <button class="submit-btn" (click)="verifyCode()" [disabled]="loadingVerify">
+      <ng-container *ngIf="!loadingVerify">Verify</ng-container>
+      <ng-container *ngIf="loadingVerify"><span class="spinner"></span> Verifying...</ng-container>
+    </button>
+
+    <div class="resend-section">
+      <div *ngIf="!canResend" class="timer">Resend in {{ timerValue }}s</div>
+      <button *ngIf="canResend" class="link-btn" (click)="resendCode()" [disabled]="loadingResend">
+        <ng-container *ngIf="!loadingResend">Resend Code</ng-container>
+        <ng-container *ngIf="loadingResend"><span class="spinner"></span> Sending...</ng-container>
+      </button>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div *ngIf="success" class="success">{{ success }}</div>
+  </div>
+</div>

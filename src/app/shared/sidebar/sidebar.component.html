@@ -1,0 +1,28 @@
+<nav class="sidebar" [class.collapsed]="collapsed">
+  <ul>
+    <li>
+      <a routerLink="/" (click)="scrollTop()">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/tasks" (click)="scrollTop()">
+        <i class="fas fa-tasks"></i>
+        <span>Tasks</span>
+      </a>
+    </li>
+    <li *ngIf="auth.getRole() !== 'Employee'">
+      <a routerLink="/tasks/new" (click)="scrollTop()">
+        <i class="fas fa-plus-circle"></i>
+        <span>New Task</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/users" (click)="scrollTop()">
+        <i class="fas fa-users"></i>
+        <span>Employees</span>
+      </a>
+    </li>
+  </ul>
+</nav>

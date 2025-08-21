@@ -1,0 +1,146 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #333;
+$border-color: #dee2e6;
+$error-color: #dc3545;
+$header-height: 60px;
+
+/* Whole page background with offset for header */
+.status-page {
+  position: fixed;
+  top: $header-height; /* offset by header height */
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  height: calc(100vh - #{$header-height});
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+/* Glass effect container */
+.status-container {
+  padding: 24px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 650px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  z-index: 1; // stays above background, below sidebar overlay
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: $text-color;
+  }
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: $primary-color;
+  animation: pulse 1.5s infinite;
+}
+
+.error {
+  font-size: 1.1rem;
+  color: $error-color;
+  font-weight: bold;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.chart-box {
+  flex: 1 1 320px;
+  max-width: 320px;
+  margin: auto;
+  position: relative;
+  height: 300px;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    animation: fadeInScale 1s ease-in-out;
+    display: block;
+  }
+
+  .chart-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $error-color;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+.legend {
+  flex: 1 1 200px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  text-align: left;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #34495e;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 12px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    strong {
+      margin-left: auto;
+      font-weight: 700;
+      color: $text-color;
+    }
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+ 0% { opacity: 0.6; }
+ 50% { opacity: 1; }
+ 100% { opacity: 0.6; }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

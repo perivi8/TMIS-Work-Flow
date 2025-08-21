@@ -1,0 +1,62 @@
+<!-- Dashboard Section -->
+<div class="dashboard-container" style="background-image: url(../assets/1.gif);" id="home">
+  <div class="dashboard-card">
+    <h2><i class="fas fa-tachometer-alt"></i> Welcome to Employee Management System</h2>
+
+    <p *ngIf="auth.getRole() === 'Manager'">
+      <i class="fas fa-tasks"></i> You can create and assign tasks, and monitor performance.
+    </p>
+    <p *ngIf="auth.getRole() === 'Admin'">
+      <i class="fas fa-user-shield"></i> Admin controls available. You can create tasks and view all users.
+    </p>
+    <p *ngIf="auth.getRole() === 'Employee'">
+      <i class="fas fa-clipboard-list"></i> You can view tasks assigned to you and update their status.
+    </p>
+    <p><i class="fas fa-bars"></i> Use the sidebar to navigate between tasks, users, and notifications.</p>
+  </div>
+</div>
+
+<!-- About Us Section -->
+<div id="about" class="full-section about-container">
+  <h2><i class="fas fa-building"></i> About Us</h2>
+  <p>
+    Welcome to <strong>Thirumoolar IT Solutions</strong> - a forward-thinking 
+    technology company dedicated to delivering cutting-edge IT solutions, software 
+    services, and digital transformation. We specialize in web development, 
+    enterprise applications, cloud solutions, and digital strategy.
+  </p>
+
+  <div class="slideshow">
+    <img
+      *ngFor="let img of companyImages; let i=index"
+      [src]="img"
+      class="fade-image"
+      [class.active]="i === currentCompanyImage"
+      alt="Company Image"
+    />
+  </div>
+</div>
+
+<!-- Events Section -->
+<div class="full-section events-container">
+  <h2><i class="fas fa-calendar-alt"></i> Events</h2>
+  <p>
+    At Thirumoolar IT Solutions, we believe in fostering innovation and learning. 
+    Our events include yearly tech summits, hackathons, employee engagement 
+    activities, and client collaboration forums.
+  </p>
+
+  <div class="slideshow">
+    <img
+      *ngFor="let img of eventImages; let i=index"
+      [src]="img"
+      class="fade-image"
+      [class.active]="i === currentEventImage"
+      alt="Event Image"
+    />
+  </div>
+</div>
+
+<div id="contact">
+  <app-footer></app-footer>
+</div>
