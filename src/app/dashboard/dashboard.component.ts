@@ -8,17 +8,17 @@ import { AuthService } from '../auth/auth.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   companyImages: string[] = [
-    '../assets/2.png',
-    '../assets/logo.png',
-    '../assets/register.gif',
-    '../assets/4.jpg'
+    '../assets/about1.png',
+    '../assets/about2.png',
+    '../assets/about3.png',
+    '../assets/about4.png'
   ];
   currentCompanyImage = 0;
 
   eventImages: string[] = [
-    'assets/login.gif',
-    'assets/register.gif',
-    'assets/1.gif'
+    'assets/event1.png',
+    'assets/event2.png',
+    'assets/event3.png'
   ];
   currentEventImage = 0;
 
